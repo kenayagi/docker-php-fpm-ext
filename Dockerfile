@@ -26,6 +26,9 @@ RUN docker-php-ext-install -j$(nproc) mcrypt
 # MySQL
 RUN docker-php-ext-install mysqli
 
+# Opcache
+RUN docker-php-ext-install -j$(nproc) opcache
+
 # XML
 RUN apt-get install -y libxml2-dev
 RUN docker-php-ext-install -j$(nproc) xml
