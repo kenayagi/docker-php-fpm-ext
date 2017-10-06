@@ -1,7 +1,7 @@
 FROM php:7.1-fpm
 
 # MySQL
-RUN docker-php-ext-install gd mysqli
+RUN docker-php-ext-install mysqli
 
 RUN apt-get update
 
