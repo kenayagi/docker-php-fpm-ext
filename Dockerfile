@@ -13,8 +13,7 @@ RUN docker-php-ext-install -j$(nproc) gd
 
 # INTL
 RUN apt-get install -y libicu-dev
-RUN docker-php-ext-configure intl
-RUN docker-php-ext-install intl
+RUN docker-php-ext-install -j$(nproc) intl
 
 # JSON
 RUN docker-php-ext-install -j$(nproc) json
@@ -24,7 +23,7 @@ RUN apt-get install -y libmcrypt-dev
 RUN docker-php-ext-install -j$(nproc) mcrypt
 
 # MySQL
-RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install -j$(nproc) mysqli
 
 # Opcache
 RUN docker-php-ext-install -j$(nproc) opcache
