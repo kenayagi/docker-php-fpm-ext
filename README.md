@@ -1,2 +1,2 @@
 # docker-php-fpm-ext
-PHP 7.3 FPM with custom extensions
+PHP 5.6 FPM with custom extensions
