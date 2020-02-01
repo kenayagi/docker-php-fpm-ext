@@ -1,4 +1,4 @@
-FROM php:7.3.12-fpm-stretch
+FROM php:7.3.14-fpm-stretch
 
 RUN apt update && apt -y upgrade
 
@@ -20,6 +20,7 @@ RUN docker-php-ext-install -j$(nproc) json
 
 # MySQL
 RUN docker-php-ext-install -j$(nproc) mysqli
+RUN docker-php-ext-install -j$(nproc) pdo_mysql
 
 # Opcache
 RUN docker-php-ext-install -j$(nproc) opcache
