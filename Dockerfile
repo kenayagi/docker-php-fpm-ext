@@ -1,4 +1,4 @@
-FROM php:7.3.14-fpm-stretch
+FROM php:7.3.15-fpm-stretch
 
 RUN apt update && apt -y upgrade
 
