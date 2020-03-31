@@ -1,34 +1,30 @@
 FROM php:7.3.16-fpm-stretch
 
-RUN apt update && apt -y upgrade
+RUN apt-get update && \
+    apt-get -y --no-install-recommends install \
+    libfreetype6-dev \
+    libjpeg-dev \
+    libicu-dev \
+    libmagickwand-dev \
+    libpng-dev \
+    libbz2-dev \
+    libxml2-dev \
+    libzip-dev \
+    && \
+    rm -rf /var/lib/apt/lists/*
 
-# BZIP2
-RUN apt -y install libbz2-dev
-RUN docker-php-ext-install -j$(nproc) bz2
-
-# GD
-RUN apt -y install libfreetype6-dev libjpeg-dev libpng-dev
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN docker-php-ext-install -j$(nproc) gd
+RUN printf "\n" | pecl install imagick
+RUN docker-php-ext-enable imagick
 
-# INTL
-RUN apt -y install libicu-dev
-RUN docker-php-ext-install -j$(nproc) intl
-
-# JSON
-RUN docker-php-ext-install -j$(nproc) json
-
-# MySQL
-RUN docker-php-ext-install -j$(nproc) mysqli
-RUN docker-php-ext-install -j$(nproc) pdo_mysql
-
-# Opcache
-RUN docker-php-ext-install -j$(nproc) opcache
-
-# XML
-RUN apt -y install libxml2-dev
-RUN docker-php-ext-install -j$(nproc) xml
-
-# ZIP
-RUN apt -y install libzip-dev
-RUN docker-php-ext-install -j$(nproc) zip
+RUN docker-php-ext-install -j$(nproc) \
+    bz2 \
+    exif \
+    gd \
+    intl \
+    json \
+    mysqli \
+    pdo_mysql \
+    opcache \
+    xml \
+    zip
