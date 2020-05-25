@@ -1,4 +1,4 @@
-FROM php:7.3.16-fpm-stretch
+FROM php:7.3.18-fpm-stretch
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
