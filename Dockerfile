@@ -1,4 +1,4 @@
-FROM php:7.3.26-fpm-stretch
+FROM php:7.4.14-fpm-buster
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
@@ -14,7 +14,7 @@ RUN apt-get update && \
     && \
     rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-webp-dir=/usr/include/
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 RUN printf "\n" | pecl install imagick
 RUN docker-php-ext-enable imagick
 
