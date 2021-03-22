@@ -1,4 +1,4 @@
-FROM php:7.4.14-fpm-buster
+FROM php:7.4.16-fpm-buster
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
