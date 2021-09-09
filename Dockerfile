@@ -1,4 +1,4 @@
-FROM php:7.4.23-fpm-buster
+FROM php:8.0.10-fpm-buster
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
@@ -23,7 +23,6 @@ RUN docker-php-ext-install -j$(nproc) \
     exif \
     gd \
     intl \
-    json \
     mysqli \
     pdo_mysql \
     opcache \
