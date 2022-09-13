@@ -1,4 +1,4 @@
-FROM php:7.4.29-fpm-bullseye
+FROM php:7.4.30-fpm-bullseye
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
