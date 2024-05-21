@@ -1,2 +1,2 @@
 # docker-php-fpm-ext
-PHP 8.1 FPM with custom extensions
+PHP 8.2 FPM with custom extensions
