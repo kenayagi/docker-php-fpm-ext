@@ -1,4 +1,4 @@
-FROM php:8.3.7-fpm-bookworm
+FROM php:8.3.9-fpm-bookworm
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
