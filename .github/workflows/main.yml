@@ -17,6 +17,7 @@ jobs:
       - name: login to the docker hub
         uses: docker/login-action@v2
         with:
+          registry: git.pretecno.com
           username: ${{ secrets.PRETECNOREGISTRY_USERNAME }}
           password: ${{ secrets.PRETECNOREGISTRY_PASSWORD }}
       - name: build and push docker image
