@@ -19,7 +19,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 RUN printf "\n" | pecl install imagick
 RUN docker-php-ext-enable imagick
 
-RUN docker-php-ext-install -j$(nproc) \
+RUN docker-php-ext-install \
     bcmath \
     bz2 \
     exif \
