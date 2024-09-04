@@ -11,9 +11,11 @@ RUN apt-get update && \
     libjpeg-dev \
     libmagickwand-dev \
     libpng-dev \
+    libvips-dev \
     libwebp-dev \
     libxml2-dev \
     libzip-dev \
+    libzstd-dev \
     && \
     rm -rf /var/lib/apt/lists/*
 
@@ -32,11 +34,5 @@ RUN docker-php-ext-install -j$(nproc) \
     xml \
     zip
 
-#RUN cd /usr/local/include/php/ext && \
-#    git clone https://github.com/Imagick/imagick && \
-#    cd imagick && \
-#    git reset --hard 28f27044e435a2b203e32675e942eb8de620ee58 && \
-#    docker-php-ext-configure imagick && \
-#    docker-php-ext-install -j$(nproc) imagick
-#
-#RUN docker-php-ext-enable imagick
+RUN printf \n | pecl install vips && docker-php-ext-enable vips
+RUN printf \n | pecl install zstd && docker-php-ext-enable zstd
