@@ -12,6 +12,7 @@ RUN apt-get update && \
     libwebp-dev \
     libxml2-dev \
     libzip-dev \
+    libzstd-dev \
     && \
     rm -rf /var/lib/apt/lists/*
 
@@ -32,3 +33,5 @@ RUN docker-php-ext-install -j$(nproc) \
     opcache \
     xml \
     zip
+
+RUN printf \n | pecl install zstd && docker-php-ext-enable zstd
