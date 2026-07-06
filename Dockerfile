@@ -1,4 +1,4 @@
-FROM php:8.4.22-fpm-bookworm
+FROM php:8.4.23-fpm-trixie
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
