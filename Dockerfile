@@ -1,4 +1,4 @@
-FROM php:8.2.33-fpm-trixie
+FROM php:8.2.34-fpm-trixie
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
