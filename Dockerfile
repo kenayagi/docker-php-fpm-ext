@@ -34,7 +34,7 @@ RUN docker-php-ext-install -j$(nproc) \
     xml \
     zip
 
-#RUN printf \n | pecl install vips && docker-php-ext-enable vips
-#RUN printf \n | pecl install zstd && docker-php-ext-enable zstd
+RUN printf \n | pecl install vips && docker-php-ext-enable vips
+RUN printf \n | pecl install zstd && docker-php-ext-enable zstd
 
 COPY config/access-format.conf /usr/local/etc/php-fpm.d/access-format.conf
