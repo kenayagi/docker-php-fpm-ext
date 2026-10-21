@@ -16,6 +16,7 @@ RUN apt-get update && \
     libxml2-dev \
     libzip-dev \
     libzstd-dev \
+    unzip \
     && \
     rm -rf /var/lib/apt/lists/*
 
@@ -34,7 +35,11 @@ RUN docker-php-ext-install -j$(nproc) \
     xml \
     zip
 
-RUN printf \n | pecl install vips && docker-php-ext-enable vips
-RUN printf \n | pecl install zstd && docker-php-ext-enable zstd
+RUN --mount=type=bind,from=ghcr.io/php/pie:bin,source=/pie,target=/usr/local/bin/pie \
+    export DEBIAN_FRONTEND="noninteractive"; \
+    set -eux; \
+    pie install --no-cache \
+        kjdev/brotli \
+        kjdev/zstd
 
 COPY config/access-format.conf /usr/local/etc/php-fpm.d/access-format.conf
