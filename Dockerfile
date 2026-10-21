@@ -5,6 +5,7 @@ RUN apt-get update && \
     git \
     libavif-dev \
     libbz2-dev \
+    libffi-dev \
     libfreetype6-dev \
     libgmp-dev \
     libicu-dev \
@@ -26,12 +27,13 @@ RUN docker-php-ext-install -j$(nproc) \
     bcmath \
     bz2 \
     exif \
+    ffi \
     gd \
     gmp \
     intl \
     mysqli \
-    pdo_mysql \
     opcache \
+    pdo_mysql \
     xml \
     zip
 
@@ -39,6 +41,7 @@ RUN --mount=type=bind,from=ghcr.io/php/pie:bin,source=/pie,target=/usr/local/bin
     export DEBIAN_FRONTEND="noninteractive"; \
     set -eux; \
     pie install --no-cache \
+        imagick/imagick \
         kjdev/brotli \
         kjdev/zstd
 
