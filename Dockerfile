@@ -45,4 +45,4 @@ RUN --mount=type=bind,from=ghcr.io/php/pie:bin,source=/pie,target=/usr/local/bin
         kjdev/brotli \
         kjdev/zstd
 
-COPY config/access-format.conf /usr/local/etc/php-fpm.d/access-format.conf
+COPY config/access-format.conf /usr/local/etc/php-fpm.d/zz-access-format.conf
