@@ -5,6 +5,7 @@ RUN apt-get update && \
     git \
     libavif-dev \
     libbz2-dev \
+    libffi-dev \
     libfreetype6-dev \
     libgmp-dev \
     libicu-dev \
@@ -16,6 +17,7 @@ RUN apt-get update && \
     libxml2-dev \
     libzip-dev \
     libzstd-dev \
+    unzip \
     && \
     rm -rf /var/lib/apt/lists/*
 
@@ -25,16 +27,22 @@ RUN docker-php-ext-install -j$(nproc) \
     bcmath \
     bz2 \
     exif \
+    ffi \
     gd \
     gmp \
     intl \
     mysqli \
-    pdo_mysql \
     opcache \
+    pdo_mysql \
     xml \
     zip
 
-RUN printf \n | pecl install vips && docker-php-ext-enable vips
-RUN printf \n | pecl install zstd && docker-php-ext-enable zstd
+RUN --mount=type=bind,from=ghcr.io/php/pie:bin,source=/pie,target=/usr/local/bin/pie \
+    export DEBIAN_FRONTEND="noninteractive"; \
+    set -eux; \
+    pie install --no-cache \
+        imagick/imagick \
+        kjdev/brotli \
+        kjdev/zstd
 
-COPY config/access-format.conf /usr/local/etc/php-fpm.d/access-format.conf
+COPY config/access-format.conf /usr/local/etc/php-fpm.d/zz-access-format.conf
